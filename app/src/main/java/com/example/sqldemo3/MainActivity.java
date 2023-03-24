@@ -49,14 +49,15 @@ public class MainActivity extends AppCompatActivity {
 
         showCustomersOnListView();
 
-
+       // println("just added this command so I could practise Git commits");-
 
         //List<CustomerModel> everyone = dataBaseHelper.getEveryone();
      //   ArrayAdapter customerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1,everyone);
 
         // set listeners
 
-        int duration = Toast.LENGTH_LONG;
+        int durationShort = Toast.LENGTH_SHORT;
+        int durationLong = Toast.LENGTH_LONG;
 
         btn_add.setOnClickListener( new View.OnClickListener(){
             @Override
@@ -78,19 +79,19 @@ public class MainActivity extends AppCompatActivity {
              //   String aString = "this is a string";
               //  String  stringAge = et_age.toString();
 
-                Toast toast = Toast.makeText(context, customerModel.toString(), duration);
+                Toast toast = Toast.makeText(context, customerModel.toString(), durationLong);
                 toast.show();
 
             }
             catch(Exception e){
                     customerModel = new CustomerModel(-1, "error", 0, false);
-                    Toast toast = Toast.makeText(context, "Error Creating Customer -- Error Info = " + e.toString() , duration);
+                    Toast toast = Toast.makeText(context, "Error Creating Customer -- Error Info = " + e.toString() , durationLong);
                     toast.show();
                 }
 
                 //DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
                 boolean success =   dataBaseHelper.addOne(customerModel);
-                Toast.makeText(MainActivity.this, "Success = " + success, duration ).show();
+                Toast.makeText(MainActivity.this, "Success = " + success, durationLong ).show();
 
                 // update show all list
                 showCustomersOnListView();
@@ -116,9 +117,9 @@ public class MainActivity extends AppCompatActivity {
 
                 // ------- old code that is no longer used ---------
                     //  CharSequence text = "ViewAll Button";
-                    // int duration = Toast.LENGTH_LONG;
+                    // int durationLong = Toast.LENGTH_LONG;
 
-                    //  Toast toast = Toast.makeText(context, everyone.toString(), duration);
+                    //  Toast toast = Toast.makeText(context, everyone.toString(), durationLong);
                     //toast.show();
                 // ------ end old code ----------------------------
 
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 CustomerModel clickedCustomer = (CustomerModel) parent.getItemAtPosition(position);
                 dataBaseHelper.deleteOne(clickedCustomer);
                 showCustomersOnListView();
-                Toast.makeText(MainActivity.this, "Deleted " + clickedCustomer.toString(), duration).show();
+                Toast.makeText(MainActivity.this, "Deleted " + clickedCustomer.toString(), durationLong).show();
             }
         });
     }
